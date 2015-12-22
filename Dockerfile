@@ -57,6 +57,6 @@ RUN git clone --depth=1 git://source.ffmpeg.org/ffmpeg.git /usr/src/ffmpeg
 WORKDIR /usr/src/ffmpeg
 RUN PKG_CONFIG_PATH=${BUILD_PREFIX}/lib/pkgconfig ./configure --enable-cross-compile --cross-prefix=${CCPREFIX} --arch=armhf --target-os=linux --prefix=${BUILD_PREFIX} --enable-gpl --enable-libx264 --enable-nonfree --enable-libaacplus --enable-libmp3lame --extra-cflags="-I${BUILD_PREFIX}/include" --extra-ldflags="-L${BUILD_PREFIX}/lib" --enable-static --pkg-config-flags="--static" --extra-libs=-ldl
 RUN make -j6 && make install
-RUN make distclean
 
 WORKDIR /opt/ffmpeg
+VOLUME /opt/ffmpeg
